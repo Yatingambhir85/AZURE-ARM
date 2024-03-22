@@ -1,7 +1,14 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "windows-vm-name": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Windows VM"
+            }
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [
@@ -56,7 +63,7 @@
                         }
                     },
                     {
-                        "name": "nsgRule2",
+                        "name": "nsgRule3",
                         "properties": {
                             "description": "Allow HTTPS to Windows VM",
                             "protocol": "Tcp",
@@ -132,7 +139,7 @@
             }
         },
         {
-            "name": "windowsVM1",
+            "name": "[parameters('windows-vm-name')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2023-03-01",
             "location": "[resourceGroup().location]",
